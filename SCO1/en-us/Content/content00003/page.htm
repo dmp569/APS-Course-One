@@ -1,0 +1,285 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+<title></title>
+    <script type="text/javascript">
+    // create function to load .js and .css files
+    function loadJs(p, f) {
+        document.write('<s' + 'cript src="' + p + f + '" type="text/javascript"><' + '\/script>');
+    }
+    function loadCss(p, f) {
+        document.write('<link href="' + p + f + '" type="text/css" rel="stylesheet" \/>');
+    }
+
+    // find the parent window that contains the CDN path
+    for (wCDN = window; !wCDN._sCdnPath && window != parent; wCDN = wCDN.parent);
+
+    // see if the course is launched online
+    var isOnline = (location.protocol == "http:" || location.protocol == "https:") && !wCDN._bDisableCDN;
+    if (isOnline) {
+        // it is, try to load jQuery files
+        loadJs(wCDN._sCdnPath, "jQuery/jquery-1.10.2.min.js");
+    } else {
+        // load all of the jQuery files from the Player folder
+        
+        loadJs("../../../Player/js/libs/", "jquery-1.10.2.min.js");
+        
+    }
+    </script>
+    <script type="text/javascript">
+        // see if the course is launched online
+        if (isOnline) {
+            // it is, see if we loaded jQuery from the CDN
+            if (window.jQuery) {
+                // we did, load the rest of the jQuery files from the CDN
+                
+                
+
+                // try to load page.min.js from the common player
+                loadJs(wCDN._sPlayerPath + "Player/js/", "page.min.js");
+            } else {
+                // load all of the jQuery files from the Player folder
+                
+                loadJs("../../../Player/js/libs/", "jquery-1.10.2.min.js");
+                
+            }
+        }
+    </script>
+    <script type="text/javascript">
+        // see if we loaded page.min.js from an online source
+        if (window.TileManager) {
+            // we did, load the rest of the files from the common player
+            loadCss(wCDN._sPlayerPath + "Player/css/", "pagestyles.css");
+        } else {
+            // load player files from local sources
+            loadJs("../../../Player/js/", "page.min.js");
+            loadCss("../../../Player/css/", "pagestyles.css");
+        }
+    </script>
+
+    <link rel="stylesheet" href="../../../Custom/css/pagestyles.css" type="text/css" />
+<script type="text/javascript">
+	//set imagePath to location of icon images relative to the page
+	//var imagePath = "../../../Player/theme/";
+
+	//to override the 2:1 aspectRatio for the page, use the aspectRatioOverride variable
+	//var aspectRatioOverride = 4 / 3;
+
+
+
+    $(document).ready(function () {
+
+        //figure out the x/y coordinates on a click
+
+        $('.hotspot_host').on('click', function (event) {
+
+            console.log(event);
+            var x = event.clientX;
+            var y = event.clientY;
+
+            var w = $(event.currentTarget).width();
+            var h = $(event.currentTarget).height();
+
+            if (event.altKey) {
+                alert('x: ' + event.clientX + ' y: ' + event.clientY + ' width:' + w + ' height:' + h + ' x% =  ' + (x/w * 100) + 'y% = ' + (y/h*100))
+            }
+            
+
+        })
+    })
+
+
+
+
+</script>
+    <style type="text/css">
+        .hotspot > a.target {background-color:green !important}
+        .light_theme .check > img.showOnDark {display:inline-block !important}
+        .light_theme .check > img.showOnLight {display:none !important}
+    </style>
+</head>
+<!-- Use data-completionType attribute on body element to control when the page is completed: 
+			- Set attribute value to "immediate" to complete page as soon as it loads; set to "auto" to complete page as soon as the required components are complete 
+			- If the attribute is omitted or the value is not "auto" or "immediate", custom script code is required to control page completion -->
+<body onkeydown="return parent.doKeyDown(event);" data-completionType="auto">
+	<div class="page_container">
+		<!-- optional instruction_overlay, used to display modal instructional content over main tab content. 
+		<div class="instruction_overlay">
+			<div class="instruction_overlay_content">
+				<div class="instruction_overlay_title accent_text">
+					+ marks the spot
+				</div>
+				<div class="instruction_overlay_detail">
+					Click on each hotspot target to expand.
+				</div>
+			</div>
+		</div>-->
+		<div class="content_wrapper">
+			<div class="content_container">
+
+				<!-- If desired, content to appear above tiles can be placed here -->
+				<!--<div>Challenges to giving your best at work require actions that result in courageous
+									contribution.Challenges to giving your best at work require actions that result
+									in courageous contribution.</div><br />-->
+
+				<!-- tile_container is the container for all tiles in the tile framework; it should be a child of content_container (there can be more than one of these, if desired)-->
+				<!-- DO NOT use inline styles to change dimensions of this container; to modify tile sizing, use inline styles on the tile_block elements -->
+				<div class="tile_container">
+
+					<!-- hotspot_host tile defines a hotspot tile ui -->
+					<!-- Three types of navigation are possible with hotspots:
+								1. Default navigation: user-activated hotspot selection; any hotspot can be selected at any time (default navigation)
+								2. Linear navigation (include attribute data-navigation="linear" on hotspot_host): user-activated selection, but hotspots cannot be selected until preceeding ones are completed
+								3. Synched navigation (include attribute data-navigation="synched" on hotspot_host): no user selection of hotspots; hotspots selection is synchronized with page media 
+								When using synched navigation, data-startTime and data-endTime attributes should be included on the hotspots -->
+					<!-- The hotspot host tile should contain one hotspotcontent element for each hotspot; these are matched by index -->
+                    <div class="tile widescreen hotspot_host">
+                        <div class="tile_background">
+                            <!-- Tile Background Image -->
+                            <img src="images/imagemap.png" alt="" />
+                            <!-- end Tile Background Image -->
+                        </div>
+                        <div class="tile_title  accessiblecontent">
+                            <!-- Page Title -->
+                            Banking key concepts:<br />
+                            <span style="color:green">types of banks</span>
+
+                            <!-- end Page Title -->
+                        </div>
+                        <div class="tile_content scrolling_box" style="width:40%">
+                            <div class="scroll_content">
+                                <div class="tile_detail accessiblecontent">
+                                    <!-- Page Description -->
+                                    <!-- use "subtle" class for text with grey semilight font -->
+                                    <p>
+                                        The banking industry provides retail, commercial, investment, and wealth management services to consumers, businesses, and other organizations.
+                                    </p>
+                                    <p>
+                                        <b>Select each bank</b> to learn more.
+                                    </p>
+
+                                    <!-- Page Description -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- hotspots go here -->
+                        <!-- use attributes "data-x", "data-y", "data-height", "data-width" to position hotspot and its selected outline frame;
+    the attribute values should be a percentage of the width/height of the hotspot_host;
+    negative data-height/data-width values place the outline frame upwards and leftwards from the hotspot target -->
+                        <!-- To mark a hotspot as required, set the data-required attribute to "true" -->
+                        <!-- By default, hotspots are set to complete as soon as they are clicked.
+    Override this behaviour on a hotspot by including the attribute data-autocomplete="false" (if, for example, a video or other interaction will be used to determine completion) -->
+                        <!-- Include data-startTime="hh:mm:ss" and data-endTime="hh:mm:ss" attributes on hotspots when using synched navigation;
+    include data-mediaId attribute to synch to media defined by a specific media_bar element as opposed to the page audio
+    (the value of this attribute should match the id of the corresponding media_bar element)-->
+                        <!--
+
+        The x/y sets the location of the hotspot as a % - so x=50 is 50% across the x axis
+        The height/width are % values is for the width and height of the outline frame for when the hotspot is active, so width=50 is a frame container that is 50% the width of the page
+        If a width value is positive, it goes to the left,
+
+        So position the hostpot (using x/y) over the image
+
+        -->
+                        <div class="hotspot" data-required="true" data-x="73" data-y="20" data-height="40" data-width="-50" aria-label="hot spot 1 - Commercial Bank" style=""></div>
+                        <div class="hotspot" data-required="true" data-x="66" data-y="58" data-height="40" data-width="-48" aria-label="hot spot 2 - Retail Bank"></div>
+                        <div class="hotspot" data-required="true" data-x="96" data-y="42" data-height="40" data-width="-40" aria-label="hot spot 3 - Investment Bank"></div>
+
+
+
+                        <!-- hotspot content items go here -->
+                        <!-- use attributes "data-x", "data-y", "data-height", "data-width" to position hotspot content item;
+    the attribute values should be a percentage of the width/height of the hotspot_host -->
+                        <div class="hotspotcontent " data-x="23" data-y="19" data-height="50" data-width="50" style="background-color:green">
+                            <!-- include an attribute "data-audio" on the media_bar with the audio filename to play when tab is selected -->
+                            <!-- include an attribute "data-video" on the media_bar with the audio filename to play when tab is selected; video files must be configured for the page using Access Point Studio
+        By default, video embeds into the media_bar itself; to embed elsewhere, include an attribute "data-mediaContainer" with the id of the element into which the video should embed -->
+                            <!--<div class="media_bar" data-audio="bring_out_your_dead.mp3"></div>-->
+                            <!--<div class="media_bar" data-video="sample.mp4"></div>-->
+                            <div class="tile_title accessiblecontent">
+                                <!-- Page Title -->
+                                Commercial banking
+
+                                <!-- end Page Title -->
+                            </div>
+                            <div class="tile_content scrolling_box" style="">
+                                <div class="scroll_content">
+                                    <div class="tile_detail accessiblecontent">
+                                        Commercial banking describes the provision of services by banks to organizations such as large corporate clients (corporate banking), institutional customers, and small and midsize business enterprises, as well as services offered to other banks and financial institutions.
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- use attributes "data-x", "data-y", "data-height", "data-width" to position hotspot content item;
+    the attribute values should be a percentage of the width/height of the hotspot_host
+
+                the height/width may need to be slightly larger than the height/width value of the associated hotspot
+                the x/y location of the hotspot content should be determined by where the frame is positioned for the associated hotspot
+
+                -->
+                        <div class="hotspotcontent " data-x="17.8" data-y="57" data-height="41" data-width="48.5" style="background-color:green">
+                            <!-- include an attribute "data-audio" on the media_bar with the audio filename to play when tab is selected -->
+                            <!-- include an attribute "data-video" on the media_bar with the audio filename to play when tab is selected; video files must be configured for the page using Access Point Studio
+        By default, video embeds into the media_bar itself; to embed elsewhere, include an attribute "data-mediaContainer" with the id of the element into which the video should embed -->
+                            <!--<div class="media_bar" data-audio="bring_out_your_dead.mp3"></div>-->
+                            <!--<div class="media_bar" data-video="sample.mp4"></div>-->
+                            <div class="tile_title accent_text accessiblecontent">
+                                <!-- Page Title -->
+                                item 2
+                                <!-- end Page Title -->
+                            </div>
+                            <div class="tile_content scrolling_box">
+                                <div class="scroll_content">
+                                    <div class="tile_detail accessiblecontent">
+                                        Some content here
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- use attributes "data-x", "data-y", "data-height", "data-width" to position hotspot content item;
+    the attribute values should be a percentage of the width/height of the hotspot_host -->
+                        <div class="hotspotcontent " data-x="56" data-y="41" data-height="41" data-width="40" style="background-color:green">
+                            <!-- include an attribute "data-audio" on the media_bar with the audio filename to play when tab is selected -->
+                            <!-- include an attribute "data-video" on the media_bar with the audio filename to play when tab is selected; video files must be configured for the page using Access Point Studio
+        By default, video embeds into the media_bar itself; to embed elsewhere, include an attribute "data-mediaContainer" with the id of the element into which the video should embed -->
+                            <!--<div class="media_bar" data-audio="bring_out_your_dead.mp3"></div>-->
+                            <!--<div class="media_bar" data-video="sample.mp4"></div>-->
+                            <div class="tile_title accent_text accessiblecontent">
+                                <!-- Page Title -->
+                                item 3
+                                <!-- end Page Title -->
+                            </div>
+                            <div class="tile_content scrolling_box">
+                                <div class="scroll_content">
+                                    <div class="tile_detail accessiblecontent">
+                                        <!-- Page Description -->
+                                        <!-- use "subtle" class for text with grey semilight font -->
+                                      
+                                        <!-- Page Description -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                       
+
+				</div>
+				<div class="clear"></div>
+
+				<!-- If desired, content to appear below tiles can be placed here -->
+				<!--Challenges to giving your best at work require actions that result in courageous
+									contribution.Challenges to giving your best at work require actions that result
+									in courageous contribution.-->
+
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>
+

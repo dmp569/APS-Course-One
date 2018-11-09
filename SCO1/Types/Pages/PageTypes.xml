@@ -3,4 +3,11 @@
   <category name="Information">
     <type id="5C748AD0-EDAA-48EB-A715-98F3301200F9" />
   </category>
+  <category name="Tab">
+    <type id="F5A83618-6DCD-498E-94C5-E19F2F2B51BA" />
+  </category>
+  <category name="Link Tiles">
+    <type id="5CA5916C-FE5E-4164-A6F7-48342E5D181C" />
+    <type id="6DD2D124-DAC9-4608-AD93-9D4E797A72AC" />
+  </category>
 </types>

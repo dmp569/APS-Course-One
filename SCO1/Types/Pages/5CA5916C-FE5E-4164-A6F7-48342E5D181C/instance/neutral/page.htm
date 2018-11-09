@@ -1,0 +1,230 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+<title></title>
+    <script type="text/javascript">
+    // create function to load .js and .css files
+    function loadJs(p, f) {
+        document.write('<s' + 'cript src="' + p + f + '" type="text/javascript"><' + '\/script>');
+    }
+    function loadCss(p, f) {
+        document.write('<link href="' + p + f + '" type="text/css" rel="stylesheet" \/>');
+    }
+
+    // find the parent window that contains the CDN path
+    for (wCDN = window; !wCDN._sCdnPath && window != parent; wCDN = wCDN.parent);
+
+    // see if the course is launched online
+    var isOnline = (location.protocol == "http:" || location.protocol == "https:") && !wCDN._bDisableCDN;
+    if (isOnline) {
+        // it is, try to load jQuery files
+        loadJs(wCDN._sCdnPath, "jQuery/jquery-1.10.2.min.js");
+    } else {
+        // load all of the jQuery files from the Player folder
+        
+        loadJs("../../../Player/js/libs/", "jquery-1.10.2.min.js");
+        
+    }
+    </script>
+    <script type="text/javascript">
+        // see if the course is launched online
+        if (isOnline) {
+            // it is, see if we loaded jQuery from the CDN
+            if (window.jQuery) {
+                // we did, load the rest of the jQuery files from the CDN
+                
+                
+
+                // try to load page.min.js from the common player
+                loadJs(wCDN._sPlayerPath + "Player/js/", "page.min.js");
+            } else {
+                // load all of the jQuery files from the Player folder
+                
+                loadJs("../../../Player/js/libs/", "jquery-1.10.2.min.js");
+                
+            }
+        }
+    </script>
+    <script type="text/javascript">
+        // see if we loaded page.min.js from an online source
+        if (window.TileManager) {
+            // we did, load the rest of the files from the common player
+            loadCss(wCDN._sPlayerPath + "Player/css/", "pagestyles.css");
+        } else {
+            // load player files from local sources
+            loadJs("../../../Player/js/", "page.min.js");
+            loadCss("../../../Player/css/", "pagestyles.css");
+        }
+    </script>
+
+    <link rel="stylesheet" href="../../../Custom/css/pagestyles.css" type="text/css" />
+<script type="text/javascript">
+	//set imagePath to location of icon images relative to the page
+	//var imagePath = "../../../Player/theme/";
+
+	//to override the 2:1 aspectRatio for the page, use the aspectRatioOverride variable
+	//var aspectRatioOverride = 4 / 3;
+</script>
+</head>
+<!-- Use data-completionType attribute on body element to control when the page is completed: 
+			- Set attribute value to "immediate" to complete page as soon as it loads; set to "auto" to complete page as soon as the required components are complete 
+			- If the attribute is omitted or the value is not "auto" or "immediate", custom script code is required to control page completion -->
+<body onkeydown="return parent.doKeyDown(event);" data-completionType="auto">
+	<div class="page_container">
+		<div class="content_wrapper">
+			<div class="content_container">
+
+				<!-- If desired, content to appear above tiles can be placed here -->
+				<!--<div>Challenges to giving your best at work require actions that result in courageous
+									contribution.Challenges to giving your best at work require actions that result
+									in courageous contribution.</div><br />-->
+
+				<!-- tile_container is the container for all tiles in the tile framework; it should be a child of content_container (there can be more than one of these, if desired)-->
+				<!-- DO NOT use inline styles to change dimensions of this container; to modify tile sizing, use inline styles on the tile_block elements -->
+				<div class="tile_container">
+
+					<!-- popuplink container -->
+					<div class="popuplink_container wide_container">
+
+                        <!-- Two types of navigation are possible with tile_block:
+                                1. Default navigation: user-activated tile selection; any tile can be selected at any time (default navigation)
+                                2. Linear navigation (include attribute data-navigation="linear" on tile_block): user-activated selection, but tiles cannot be selected until preceeding ones are completed-->
+
+						<div class="tile_block">
+
+							<!-- popuplink 1 - include classname "widelink" to scale at 16:9 for link to video content -->
+							<!-- To mark a popuplink as required, set the data-required attribute to "true" -->
+							<!-- include an attribute "data-linkpageid" on the tile with the id of the page to open in the content popup view;
+									 alternatively, include an attribute "data-resourceName" on the tile with the name of the page's resource to open;
+									 alternatively, include an attribute "data-href" on the tile with the link url -->
+							<div class="popuplink widelink tile" data-required="true" data-linkpageid="1">
+								<div class="tile_background">
+								<!-- Tab Background Image-->
+									<img alt="" src="images/SampleImage.png"/>
+								<!-- end Tab Background Image-->
+								</div>	
+								 <a class="open tileActionButton"  aria-label="Open tile"></a>
+
+								<div class="popuplink_number">
+								<!-- Tab Number -->
+									01
+								<!-- end Tab Number -->
+								</div>
+
+								<div class="popuplink_title">
+								<!-- Tab Title -->
+									challenges to<br />
+									giving your best<br />
+									at work
+								<!-- end Tab Title -->
+								</div>
+							</div>
+				
+							<!-- popuplink 2 - include classname "widelink" to scale at 16:9 for link to video content -->
+							<!-- To mark a popuplink as required, set the data-required attribute to "true" -->
+							<!-- include an attribute "data-linkpageid" on the tile with the id of the page to open in the content popup view;
+									 alternatively, include an attribute "data-resourceName" on the tile with the name of the page's resource to open;
+									 alternatively, include an attribute "data-href" on the tile with the link url -->
+							<div class="popuplink widelink tile" data-required="true" data-linkpageid="1">
+								 <a class="open tileActionButton"  aria-label="Open tile"></a>
+
+								<div class="popuplink_number">
+								<!-- Tab Number -->
+									02
+								<!-- end Tab Number -->
+								</div>
+
+								<div class="popuplink_title">
+								<!-- Tab Title -->
+									defining vision<br />
+									&amp; direction
+								<!-- end Tab Title -->
+								</div>
+							</div>
+
+							<!-- popuplink 3 - scaled for non-video content -->
+							<!-- To mark a popuplink as required, set the data-required attribute to "true" -->
+							<!-- include an attribute "data-linkpageid" on the tile with the id of the page to open in the content popup view;
+									 alternatively, include an attribute "data-resourceName" on the tile with the name of the page's resource to open;
+									 alternatively, include an attribute "data-href" on the tile with the link url -->
+							<div class="popuplink tile accent2" data-required="true" data-linkpageid="1">
+								 <a class="open tileActionButton"  aria-label="Open tile"></a>
+
+								<div class="popuplink_number">
+								<!-- Tab Number -->
+									03
+								<!-- end Tab Number -->
+								</div>
+
+								<div class="popuplink_title">
+								<!-- Tab Title -->
+									fostering<br />
+									collaboration<br />
+									&amp; learning
+								<!-- end Tab Title -->
+								</div>
+							</div>
+
+							<!-- popuplink 4 - scaled for non-video content -->
+							<!-- To mark a popuplink as required, set the data-required attribute to "true" -->
+							<!-- include an attribute "data-linkpageid" on the tile with the id of the page to open in the content popup view;
+									 alternatively, include an attribute "data-resourceName" on the tile with the name of the page's resource to open;
+									 alternatively, include an attribute "data-href" on the tile with the link url -->
+							<div class="popuplink tile accent" data-required="true" data-linkpageid="1">
+								 <a class="open tileActionButton"  aria-label="Open tile"></a>
+
+								<div class="popuplink_number">
+								<!-- Tab Number -->
+									04
+								<!-- end Tab Number -->
+								</div>
+
+								<div class="popuplink_title">
+								<!-- Tab Title -->
+									courageous<br />
+									conversations
+								<!-- end Tab Title -->
+								</div>
+							</div>
+
+							<!-- popuplink 5 - scaled 16:9 for non-video content -->
+							<!-- To mark a popuplink as required, set the data-required attribute to "true" -->
+							<!-- include an attribute "data-linkpageid" on the tile with the id of the page to open in the content popup view;
+									 alternatively, include an attribute "data-resourceName" on the tile with the name of the page's resource to open;
+									 alternatively, include an attribute "data-href" on the tile with the link url -->
+							<div class="popuplink widelink tile" data-required="true" data-linkpageid="1">
+								 <a class="open tileActionButton"  aria-label="Open tile"></a>
+
+								<div class="popuplink_number">
+								<!-- Tab Number -->
+									05
+								<!-- end Tab Number -->
+								</div>
+
+								<div class="popuplink_title">
+								<!-- Tab Title -->
+									3 steps to effectively<br />
+									manage your career
+								<!-- end Tab Title -->
+								</div>
+							</div>
+
+							<!-- always clear the float at end of a tile_block -->
+							<div class="clear"></div>
+
+						</div>
+					</div>
+
+				</div>
+				<div class="clear"></div>
+
+				<!-- If desired, content to appear below tiles can be placed here -->
+				<!--Challenges to giving your best at work require actions that result in courageous
+									contribution.Challenges to giving your best at work require actions that result
+									in courageous contribution.-->
+			</div>
+		</div>
+	</div>
+</body>
+</html>

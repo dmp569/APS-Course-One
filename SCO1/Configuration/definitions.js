@@ -20,7 +20,7 @@ var _nTrackSelectionMax = 2;
 var _sTableOfContentsStyle = "TableOfContents";
 var _bHideHeader  = false;
 var _bHideFooter  = false;
-var _sTheme = "Dark"; // use the set theme for the UI
+var _sTheme = "Light"; // use the set theme for the UI
 var _nEvalPlayerVersion = 1;
 var _sEvalContentKey = "CONT01592";
 

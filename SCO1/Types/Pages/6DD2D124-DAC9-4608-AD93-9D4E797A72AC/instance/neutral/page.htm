@@ -1,0 +1,140 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+<title></title>
+    <script type="text/javascript">
+    // create function to load .js and .css files
+    function loadJs(p, f) {
+        document.write('<s' + 'cript src="' + p + f + '" type="text/javascript"><' + '\/script>');
+    }
+    function loadCss(p, f) {
+        document.write('<link href="' + p + f + '" type="text/css" rel="stylesheet" \/>');
+    }
+
+    // find the parent window that contains the CDN path
+    for (wCDN = window; !wCDN._sCdnPath && window != parent; wCDN = wCDN.parent);
+
+    // see if the course is launched online
+    var isOnline = (location.protocol == "http:" || location.protocol == "https:") && !wCDN._bDisableCDN;
+    if (isOnline) {
+        // it is, try to load jQuery files
+        loadJs(wCDN._sCdnPath, "jQuery/jquery-1.10.2.min.js");
+    } else {
+        // load all of the jQuery files from the Player folder
+        
+        loadJs("../../../Player/js/libs/", "jquery-1.10.2.min.js");
+        
+    }
+    </script>
+    <script type="text/javascript">
+        // see if the course is launched online
+        if (isOnline) {
+            // it is, see if we loaded jQuery from the CDN
+            if (window.jQuery) {
+                // we did, load the rest of the jQuery files from the CDN
+                
+                
+
+                // try to load page.min.js from the common player
+                loadJs(wCDN._sPlayerPath + "Player/js/", "page.min.js");
+            } else {
+                // load all of the jQuery files from the Player folder
+                
+                loadJs("../../../Player/js/libs/", "jquery-1.10.2.min.js");
+                
+            }
+        }
+    </script>
+    <script type="text/javascript">
+        // see if we loaded page.min.js from an online source
+        if (window.TileManager) {
+            // we did, load the rest of the files from the common player
+            loadCss(wCDN._sPlayerPath + "Player/css/", "pagestyles.css");
+        } else {
+            // load player files from local sources
+            loadJs("../../../Player/js/", "page.min.js");
+            loadCss("../../../Player/css/", "pagestyles.css");
+        }
+    </script>
+
+    <link rel="stylesheet" href="../../../Custom/css/pagestyles.css" type="text/css" />
+<script type="text/javascript">
+	//set imagePath to location of icon images relative to the page
+	//var imagePath = "../../../Player/theme/";
+
+	//to override the 2:1 aspectRatio for the page, use the aspectRatioOverride variable
+	//var aspectRatioOverride = 4 / 3;
+</script>
+</head>
+<body onkeydown="return parent.doKeyDown(event);">
+	<div class="page_container">
+		<div class="content_wrapper">
+			<div class="content_container">
+
+				<!-- If desired, content to appear above tiles can be placed here -->
+				<!--<div>Challenges to giving your best at work require actions that result in courageous
+									contribution.Challenges to giving your best at work require actions that result
+									in courageous contribution.</div><br />-->
+
+				<!-- tile_container is the container for all tiles in the tile framework; it should be a child of content_container (there can be more than one of these, if desired)-->
+				<!-- DO NOT use inline styles to change dimensions of this container; to modify tile sizing, use inline styles on the tile_block elements -->
+				<div class="tile_container">
+
+					<!-- left side square content tile -->
+					<div class="medium_rectangle tile">
+
+						<div class="tile_content scrolling_box">
+							<div class="scroll_content">
+
+								<div class="tile_detail page_description">
+								<!-- Page Description -->
+									<span class="subtle">Because building confidence is core to Microsoft business leadership,
+									culture, and values, developing authentic confidence is critical for employees.</span><br />
+									<br />
+									Authentic confidence is confidence that provides balance between self-doubt and arrogance
+									in the face of challenging situations. To build authentic confidence, employees learn
+									to act courageously in the face of challenges. This results in the employees becoming more
+									confident in their own abilities and also in their team or group, and in their ability to
+									positively impact the business and the company.
+								<!-- Page Description -->
+								</div>
+
+							</div>
+						</div>
+
+						<!-- tile footer; remove from page if not required -->
+						<div class="tile_footer">
+							<div class="tile_footer_content accent2_text" style="text-align:right;">
+							<!-- Tile Footer text-->
+								NEXT: TIPS FOR TAKING THIS COURSE
+							<!-- end Tile Footer text-->
+							</div>
+						</div>
+
+					</div>
+
+
+					<!-- right side square content tile -->
+					<div class="small_square tile">
+
+						<div class="tile_background">
+						<!-- Tile Background Image -->
+							<img src="images/SampleImage4.png" alt="" />
+						<!-- end Tile Background Image -->
+						</div>
+					</div>
+
+				</div>
+				<div class="clear"></div>
+				
+				<!-- If desired, content to appear below tiles can be placed here -->
+				<!--Challenges to giving your best at work require actions that result in courageous
+									contribution.Challenges to giving your best at work require actions that result
+									in courageous contribution.-->
+
+			</div>
+		</div>
+	</div>
+</body>
+</html>
